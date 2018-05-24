@@ -20,10 +20,13 @@
   "author": "Fabio Albertin",
   "license": "MIT",
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-mf": "^1.1.1",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.8.2"
-  }
+  },
+  "dependencies": {}
 }
