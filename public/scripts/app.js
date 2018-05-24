@@ -1,11 +1,14 @@
+'use strict';
+
 function printme() {
   return 'Hello hot stuff!';
 }
 
-const tmpl = React.createElement('h1', { id: 'title' }, 'Indecision');
+var tmpl = React.createElement(
+  'h1',
+  null,
+  'Indecision'
+);
 
 console.log(printme());
-ReactDOM.render(
-  tmpl,
-  document.getElementById('app'),
-);
+ReactDOM.render(tmpl, document.getElementById('app'));
