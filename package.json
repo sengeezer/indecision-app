@@ -1,0 +1,22 @@
+{
+  "name": "indecision-app",
+  "version": "0.0.1",
+  "description": "Indecision app from Andrew Mead's React course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.matchesremote.com/fabioa/indecision-app"
+  },
+  "keywords": [
+    "react",
+    "js",
+    "indecision",
+    "udemy",
+    "mead"
+  ],
+  "author": "Fabio Albertin",
+  "license": "MIT"
+}
