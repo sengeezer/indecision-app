@@ -6,7 +6,8 @@ function printme() {
 
 var app = {
   title: 'Indecision',
-  subtitle: 'Not King Crimson'
+  subtitle: 'Not King Crimson',
+  options: ['One', 'Two']
 };
 
 var tmpl = React.createElement(
@@ -17,18 +18,36 @@ var tmpl = React.createElement(
     null,
     app.title
   ),
-  React.createElement(
+  app.subtitle && React.createElement(
     'p',
     null,
     app.subtitle
+  ),
+  React.createElement(
+    'p',
+    null,
+    app.options.length > 0 ? 'Here are your options' : 'No options'
   )
 );
 
 var tmpl2vars = {
   name: 'F. M. Albertin',
-  age: 'Not old',
+  age: 37,
   location: 'UK'
 };
+
+function getLocation(loc) {
+  if (loc) {
+    return React.createElement(
+      'p',
+      null,
+      'Location: ',
+      loc
+    );
+  }
+
+  return undefined;
+}
 
 var tmpl2 = React.createElement(
   'div',
@@ -36,20 +55,15 @@ var tmpl2 = React.createElement(
   React.createElement(
     'h1',
     null,
-    tmpl2vars.name
+    tmpl2vars.name ? tmpl2vars.name : 'Anonymous'
   ),
-  React.createElement(
+  tmpl2vars.age && tmpl2vars.age >= 18 && React.createElement(
     'p',
     null,
     'Age: ',
     tmpl2vars.age
   ),
-  React.createElement(
-    'p',
-    null,
-    'Location: ',
-    tmpl2vars.location
-  )
+  getLocation(tmpl2vars.location)
 );
 
 console.log(printme());
