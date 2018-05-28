@@ -38,8 +38,8 @@ const tmpl2 = (
   </div>
 );
 
+const appRoot = document.getElementById('app');
+
 console.log(printme());
-ReactDOM.render(
-  tmpl,
-  document.getElementById('app'),
-);
+
+ReactDOM.render(tmpl, appRoot);

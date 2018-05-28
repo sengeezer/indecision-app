@@ -66,5 +66,8 @@ var tmpl2 = React.createElement(
   getLocation(tmpl2vars.location)
 );
 
+var appRoot = document.getElementById('app');
+
 console.log(printme());
-ReactDOM.render(tmpl, document.getElementById('app'));
+
+ReactDOM.render(tmpl, appRoot);
