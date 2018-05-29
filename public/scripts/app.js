@@ -30,44 +30,62 @@ var tmpl = React.createElement(
   )
 );
 
-var tmpl2vars = {
-  name: 'F. M. Albertin',
-  age: 37,
-  location: 'UK'
-};
+// MANUAL refresh
 
-function getLocation(loc) {
-  if (loc) {
-    return React.createElement(
+var count = 0;
+
+var rendertmpl2 = function rendertmpl2() {
+  var tmpl2 = React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h1',
+      null,
+      'Counter'
+    ),
+    React.createElement(
       'p',
       null,
-      'Location: ',
-      loc
-    );
-  }
+      'Count: ',
+      count
+    ),
+    React.createElement(
+      'button',
+      { onClick: increment },
+      '+1'
+    ),
+    React.createElement(
+      'button',
+      { onClick: decrement },
+      '-1'
+    ),
+    React.createElement(
+      'button',
+      { onClick: reset },
+      'Reset'
+    )
+  );
 
-  return undefined;
-}
+  ReactDOM.render(tmpl2, appRoot);
+};
 
-var tmpl2 = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    tmpl2vars.name ? tmpl2vars.name : 'Anonymous'
-  ),
-  tmpl2vars.age && tmpl2vars.age >= 18 && React.createElement(
-    'p',
-    null,
-    'Age: ',
-    tmpl2vars.age
-  ),
-  getLocation(tmpl2vars.location)
-);
+var increment = function increment() {
+  count += 1;
+  rendertmpl2();
+};
+
+var decrement = function decrement() {
+  count -= 1;
+  rendertmpl2();
+};
+
+var reset = function reset() {
+  count = 0;
+  rendertmpl2();
+};
 
 var appRoot = document.getElementById('app');
 
 console.log(printme());
 
-ReactDOM.render(tmpl, appRoot);
+rendertmpl2();

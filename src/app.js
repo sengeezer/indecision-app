@@ -16,30 +16,41 @@ const tmpl = (
   </div>
 );
 
-const tmpl2vars = {
-  name: 'F. M. Albertin',
-  age: 37,
-  location: 'UK',
+// MANUAL refresh
+
+let count = 0;
+
+const rendertmpl2 = () => {
+  const tmpl2 = (
+    <div>
+      <h1>Counter</h1>
+      <p>Count: {count}</p>
+      <button onClick={increment}>+1</button>
+      <button onClick={decrement}>-1</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+
+  ReactDOM.render(tmpl2, appRoot);
 };
 
-function getLocation(loc) {
-  if (loc) {
-    return <p>Location: {loc}</p>;
-  }
+const increment = () => {
+  count += 1;
+  rendertmpl2();
+};
 
-  return undefined;
-}
+const decrement = () => {
+  count -= 1;
+  rendertmpl2();
+};
 
-const tmpl2 = (
-  <div>
-    <h1>{tmpl2vars.name ? tmpl2vars.name : 'Anonymous'}</h1>
-    {(tmpl2vars.age && tmpl2vars.age >= 18) && <p>Age: {tmpl2vars.age}</p>}
-    {getLocation(tmpl2vars.location)}
-  </div>
-);
+const reset = () => {
+  count = 0;
+  rendertmpl2();
+};
 
 const appRoot = document.getElementById('app');
 
 console.log(printme());
 
-ReactDOM.render(tmpl, appRoot);
+rendertmpl2();
