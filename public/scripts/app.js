@@ -10,82 +10,92 @@ var app = {
   options: ['One', 'Two']
 };
 
-var tmpl = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    'p',
-    null,
-    app.subtitle
-  ),
-  React.createElement(
-    'p',
-    null,
-    app.options.length > 0 ? 'Here are your options' : 'No options'
-  )
-);
+var handleSubmit = function handleSubmit(ev) {
+  ev.preventDefault();
 
-// MANUAL refresh
+  var option = ev.target.elements.option.value;
 
-var count = 0;
+  if (option) {
+    app.options.push(option);
+    ev.target.elements.option.value = '';
+    renderTmpl();
+  }
+};
 
-var rendertmpl2 = function rendertmpl2() {
-  var tmpl2 = React.createElement(
+var onRemoveAll = function onRemoveAll() {
+  app.options = ['One', 'Two'];
+  renderTmpl();
+};
+
+var numbers = [22, 55, 1001];
+
+var renderTmpl = function renderTmpl() {
+  var tmpl = React.createElement(
     'div',
     null,
     React.createElement(
       'h1',
       null,
-      'Counter'
+      app.title
+    ),
+    app.subtitle && React.createElement(
+      'p',
+      null,
+      app.subtitle
     ),
     React.createElement(
       'p',
       null,
-      'Count: ',
-      count
+      app.options.length > 0 ? 'Here are your options' : 'No options'
+    ),
+    React.createElement(
+      'p',
+      null,
+      app.options.length
     ),
     React.createElement(
       'button',
-      { onClick: increment },
-      '+1'
+      { onClick: onRemoveAll },
+      'Remove All'
+    ),
+    numbers.map(function (num) {
+      return React.createElement(
+        'p',
+        { key: num },
+        num
+      );
+    }),
+    React.createElement(
+      'ol',
+      null,
+      React.createElement(
+        'li',
+        null,
+        'Item one'
+      ),
+      React.createElement(
+        'li',
+        null,
+        'Item two'
+      )
     ),
     React.createElement(
-      'button',
-      { onClick: decrement },
-      '-1'
-    ),
-    React.createElement(
-      'button',
-      { onClick: reset },
-      'Reset'
+      'form',
+      { onSubmit: handleSubmit },
+      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement(
+        'button',
+        { type: 'submit' },
+        'Add option'
+      )
     )
   );
 
-  ReactDOM.render(tmpl2, appRoot);
-};
-
-var increment = function increment() {
-  count += 1;
-  rendertmpl2();
-};
-
-var decrement = function decrement() {
-  count -= 1;
-  rendertmpl2();
-};
-
-var reset = function reset() {
-  count = 0;
-  rendertmpl2();
+  ReactDOM.render(tmpl, appRoot);
 };
 
 var appRoot = document.getElementById('app');
 
-console.log(printme());
+renderTmpl();
 
-rendertmpl2();
+console.log(printme());

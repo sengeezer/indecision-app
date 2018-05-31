@@ -8,49 +8,53 @@ const app = {
   options: ['One', 'Two'],
 };
 
-const tmpl = (
-  <div>
-    <h1>{app.title}</h1>
-    {app.subtitle && <p>{app.subtitle}</p>}
-    <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-  </div>
-);
+const handleSubmit = (ev) => {
+  ev.preventDefault();
 
-// MANUAL refresh
+  const option = ev.target.elements.option.value;
 
-let count = 0;
+  if (option) {
+    app.options.push(option);
+    ev.target.elements.option.value = '';
+    renderTmpl();
+  }
+};
 
-const rendertmpl2 = () => {
-  const tmpl2 = (
+const onRemoveAll = () => {
+  app.options = ['One', 'Two'];
+  renderTmpl();
+};
+
+const numbers = [22, 55, 1001];
+
+const renderTmpl = () => {
+  const tmpl = (
     <div>
-      <h1>Counter</h1>
-      <p>Count: {count}</p>
-      <button onClick={increment}>+1</button>
-      <button onClick={decrement}>-1</button>
-      <button onClick={reset}>Reset</button>
+      <h1>{app.title}</h1>
+      {/* Conditional rendering */}
+      {app.subtitle && <p>{app.subtitle}</p>}
+      <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
+      <p>{app.options.length}</p>
+      <button onClick={onRemoveAll}>Remove All</button>
+      {
+        numbers.map(num => <p key={num}>{num}</p>)
+      }
+      <ol>
+        <li>Item one</li>
+        <li>Item two</li>
+      </ol>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="option" />
+        <button type="submit">Add option</button>
+      </form>
     </div>
   );
 
-  ReactDOM.render(tmpl2, appRoot);
-};
-
-const increment = () => {
-  count += 1;
-  rendertmpl2();
-};
-
-const decrement = () => {
-  count -= 1;
-  rendertmpl2();
-};
-
-const reset = () => {
-  count = 0;
-  rendertmpl2();
+  ReactDOM.render(tmpl, appRoot);
 };
 
 const appRoot = document.getElementById('app');
 
-console.log(printme());
+renderTmpl();
 
-rendertmpl2();
+console.log(printme());
