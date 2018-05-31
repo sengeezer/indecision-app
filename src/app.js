@@ -5,7 +5,7 @@ function printme() {
 const app = {
   title: 'Indecision',
   subtitle: 'Not King Crimson',
-  options: ['One', 'Two'],
+  options: [],
 };
 
 const handleSubmit = (ev) => {
@@ -21,11 +21,18 @@ const handleSubmit = (ev) => {
 };
 
 const onRemoveAll = () => {
-  app.options = ['One', 'Two'];
+  app.options = [];
   renderTmpl();
 };
 
-const numbers = [22, 55, 1001];
+const getRandomDecision = (ev) => {
+  ev.preventDefault();
+
+  const randNum = Math.floor(Math.random() * app.options.length);
+  const option = app.options[randNum];
+
+  console.log(option);
+};
 
 const renderTmpl = () => {
   const tmpl = (
@@ -34,14 +41,13 @@ const renderTmpl = () => {
       {/* Conditional rendering */}
       {app.subtitle && <p>{app.subtitle}</p>}
       <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-      <p>{app.options.length}</p>
+      <button disabled={app.options.length === 0} onClick={getRandomDecision}>What should I do?</button>
       <button onClick={onRemoveAll}>Remove All</button>
-      {
-        numbers.map(num => <p key={num}>{num}</p>)
-      }
+
       <ol>
-        <li>Item one</li>
-        <li>Item two</li>
+        {
+          app.options.map(opt => <li key={opt}>{opt}</li>)
+        }
       </ol>
       <form onSubmit={handleSubmit}>
         <input type="text" name="option" />
