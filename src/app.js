@@ -1,66 +1,72 @@
-function printme() {
-  return 'Hello hot stuff!';
+class Header extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subtitle}</h2>
+      </div>
+    );
+  }
 }
 
-const app = {
-  title: 'Indecision',
-  subtitle: 'Not King Crimson',
-  options: [],
-};
-
-const handleSubmit = (ev) => {
-  ev.preventDefault();
-
-  const option = ev.target.elements.option.value;
-
-  if (option) {
-    app.options.push(option);
-    ev.target.elements.option.value = '';
-    renderTmpl();
+class Action extends React.Component {
+  render() {
+    return (
+      <div>
+        <button>What should I do?</button>
+      </div>
+    );
   }
-};
+}
 
-const onRemoveAll = () => {
-  app.options = [];
-  renderTmpl();
-};
+class Option extends React.Component {
+  render() {
+    return (
+      <div>
+        {this.props.option}
+      </div>
+    );
+  }
+}
 
-const getRandomDecision = (ev) => {
-  ev.preventDefault();
-
-  const randNum = Math.floor(Math.random() * app.options.length);
-  const option = app.options[randNum];
-
-  console.log(option);
-};
-
-const renderTmpl = () => {
-  const tmpl = (
-    <div>
-      <h1>{app.title}</h1>
-      {/* Conditional rendering */}
-      {app.subtitle && <p>{app.subtitle}</p>}
-      <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-      <button disabled={app.options.length === 0} onClick={getRandomDecision}>What should I do?</button>
-      <button onClick={onRemoveAll}>Remove All</button>
-
-      <ol>
+class Options extends React.Component {
+  render() {
+    return (
+      <div>
+        <ol>
         {
-          app.options.map(opt => <li key={opt}>{opt}</li>)
+          this.props.options.map(opt => <li key={opt}><Option option={opt} /></li>)
         }
-      </ol>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="option" />
-        <button type="submit">Add option</button>
-      </form>
-    </div>
-  );
+        </ol>
+      </div>
+    );
+  }
+}
 
-  ReactDOM.render(tmpl, appRoot);
-};
+class AddOption extends React.Component {
+  render() {
+    return (
+      <div>
+        <p>Add option here</p>
+      </div>
+    );
+  }
+}
 
-const appRoot = document.getElementById('app');
+class IndecisionApp extends React.Component {
+  render() {
+    const title = 'Indecision';
+    const subtitle = 'A simple randomizer';
+    const opts = ['Hwonne', 'Tooo', 'Phree'];
+    return (
+      <div>
+        <Header title={title} subtitle={subtitle} />
+        <Action />
+        <Options options={opts} />
+        <AddOption />
+      </div>
+    );
+  }
+}
 
-renderTmpl();
-
-console.log(printme());
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
