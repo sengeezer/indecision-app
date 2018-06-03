@@ -50,6 +50,11 @@ var Action = function (_React$Component2) {
   }
 
   _createClass(Action, [{
+    key: 'handlePick',
+    value: function handlePick() {
+      console.log('picked');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -57,7 +62,7 @@ var Action = function (_React$Component2) {
         null,
         React.createElement(
           'button',
-          null,
+          { onClick: this.handlePick },
           'What should I do?'
         )
       );
@@ -100,11 +105,21 @@ var Options = function (_React$Component4) {
   }
 
   _createClass(Options, [{
+    key: 'handleRemoveAll',
+    value: function handleRemoveAll() {
+      console.log('remove all');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
+        React.createElement(
+          'button',
+          { onClick: this.handleRemoveAll },
+          'Remove All'
+        ),
         React.createElement(
           'ol',
           null,
@@ -133,15 +148,32 @@ var AddOption = function (_React$Component5) {
   }
 
   _createClass(AddOption, [{
+    key: 'handleSubmit',
+    value: function handleSubmit(ev) {
+      ev.preventDefault();
+
+      var option = ev.target.elements.option.value.trim();
+
+      if (option) {
+        console.log(option);
+        ev.target.elements.option.value = '';
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
         React.createElement(
-          'p',
-          null,
-          'Add option here'
+          'form',
+          { onSubmit: this.handleSubmit },
+          React.createElement('input', { type: 'text', name: 'option' }),
+          React.createElement(
+            'button',
+            { type: 'submit' },
+            'Add Option'
+          )
         )
       );
     }
