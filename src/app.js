@@ -16,7 +16,7 @@ class Action extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handlePick}>What should I do?</button>
+        <button onClick={this.handlePick} disabled={!this.props.hasOpts}>What should I do?</button>
       </div>
     );
   }
@@ -78,15 +78,20 @@ class AddOption extends React.Component {
 }
 
 class IndecisionApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      opts: ['Hwonne', 'Tooo', 'Phree'],
+    };
+  }
   render() {
     const title = 'Indecision';
     const subtitle = 'A simple randomizer';
-    const opts = ['Hwonne', 'Tooo', 'Phree'];
     return (
       <div>
         <Header title={title} subtitle={subtitle} />
-        <Action />
-        <Options options={opts} />
+        <Action hasOpts={this.state.opts.length > 0} />
+        <Options options={this.state.opts} />
         <AddOption />
       </div>
     );
