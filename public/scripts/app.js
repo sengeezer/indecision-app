@@ -8,16 +8,43 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Header = function (_React$Component) {
-  _inherits(Header, _React$Component);
+var Counter = function (_React$Component) {
+  _inherits(Counter, _React$Component);
 
-  function Header() {
-    _classCallCheck(this, Header);
+  function Counter(props) {
+    _classCallCheck(this, Counter);
 
-    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
+
+    _this.state = {
+      count: 0
+    };
+
+    _this.handleIncrement = _this.handleIncrement.bind(_this);
+    _this.handleDecrement = _this.handleDecrement.bind(_this);
+    _this.handleReset = _this.handleReset.bind(_this);
+    return _this;
   }
 
-  _createClass(Header, [{
+  _createClass(Counter, [{
+    key: 'handleIncrement',
+    value: function handleIncrement() {
+      // count += 1;
+      console.log('increment');
+    }
+  }, {
+    key: 'handleDecrement',
+    value: function handleDecrement() {
+      // count -= 1;
+      console.log('decrement');
+    }
+  }, {
+    key: 'handleReset',
+    value: function handleReset() {
+      // count = 0;
+      console.log('reset');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -26,192 +53,33 @@ var Header = function (_React$Component) {
         React.createElement(
           'h1',
           null,
-          this.props.title
+          'Counter'
         ),
         React.createElement(
-          'h2',
+          'p',
           null,
-          this.props.subtitle
-        )
-      );
-    }
-  }]);
-
-  return Header;
-}(React.Component);
-
-var Action = function (_React$Component2) {
-  _inherits(Action, _React$Component2);
-
-  function Action() {
-    _classCallCheck(this, Action);
-
-    return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
-  }
-
-  _createClass(Action, [{
-    key: 'handlePick',
-    value: function handlePick() {
-      console.log('picked');
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'button',
-          { onClick: this.handlePick },
-          'What should I do?'
-        )
-      );
-    }
-  }]);
-
-  return Action;
-}(React.Component);
-
-var Option = function (_React$Component3) {
-  _inherits(Option, _React$Component3);
-
-  function Option() {
-    _classCallCheck(this, Option);
-
-    return _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).apply(this, arguments));
-  }
-
-  _createClass(Option, [{
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        null,
-        this.props.option
-      );
-    }
-  }]);
-
-  return Option;
-}(React.Component);
-
-var Options = function (_React$Component4) {
-  _inherits(Options, _React$Component4);
-
-  function Options(props) {
-    _classCallCheck(this, Options);
-
-    var _this4 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
-
-    _this4.handleRemoveAll = _this4.handleRemoveAll.bind(_this4);
-    return _this4;
-  }
-
-  _createClass(Options, [{
-    key: 'handleRemoveAll',
-    value: function handleRemoveAll() {
-      console.log(this.props.options);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'button',
-          { onClick: this.handleRemoveAll },
-          'Remove All'
+          'Count: '
         ),
         React.createElement(
-          'ol',
-          null,
-          this.props.options.map(function (opt) {
-            return React.createElement(
-              'li',
-              { key: opt },
-              React.createElement(Option, { option: opt })
-            );
-          })
-        )
-      );
-    }
-  }]);
-
-  return Options;
-}(React.Component);
-
-var AddOption = function (_React$Component5) {
-  _inherits(AddOption, _React$Component5);
-
-  function AddOption() {
-    _classCallCheck(this, AddOption);
-
-    return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
-  }
-
-  _createClass(AddOption, [{
-    key: 'handleSubmit',
-    value: function handleSubmit(ev) {
-      ev.preventDefault();
-
-      var option = ev.target.elements.option.value.trim();
-
-      if (option) {
-        console.log(option);
-        ev.target.elements.option.value = '';
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        null,
+          'button',
+          { onClick: this.handleIncrement },
+          '+1'
+        ),
         React.createElement(
-          'form',
-          { onSubmit: this.handleSubmit },
-          React.createElement('input', { type: 'text', name: 'option' }),
-          React.createElement(
-            'button',
-            { type: 'submit' },
-            'Add Option'
-          )
+          'button',
+          { onClick: this.handleDecrement },
+          '-1'
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.handleReset },
+          'Reset'
         )
       );
     }
   }]);
 
-  return AddOption;
+  return Counter;
 }(React.Component);
 
-var IndecisionApp = function (_React$Component6) {
-  _inherits(IndecisionApp, _React$Component6);
-
-  function IndecisionApp() {
-    _classCallCheck(this, IndecisionApp);
-
-    return _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).apply(this, arguments));
-  }
-
-  _createClass(IndecisionApp, [{
-    key: 'render',
-    value: function render() {
-      var title = 'Indecision';
-      var subtitle = 'A simple randomizer';
-      var opts = ['Hwonne', 'Tooo', 'Phree'];
-      return React.createElement(
-        'div',
-        null,
-        React.createElement(Header, { title: title, subtitle: subtitle }),
-        React.createElement(Action, null),
-        React.createElement(Options, { options: opts }),
-        React.createElement(AddOption, null)
-      );
-    }
-  }]);
-
-  return IndecisionApp;
-}(React.Component);
-
-ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById('app'));
+ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
