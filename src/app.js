@@ -1,48 +1,40 @@
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <h2>{this.props.subtitle}</h2>
-      </div>
-    );
-  }
-}
+const Header = (props) => {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <h2>{props.subtitle}</h2>
+    </div>
+  );
+};
 
-class Action extends React.Component {
-  render() {
-    return (
-      <div>
-        <button onClick={this.props.handlePick} disabled={!this.props.hasOpts}>What should I do?</button>
-      </div>
-    );
-  }
-}
+const Action = (props) => {
+  return (
+    <div>
+      <button onClick={props.handlePick} disabled={!props.hasOpts}>What should I do?</button>
+    </div>
+  );
+};
 
-class Option extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.option}
-      </div>
-    );
-  }
-}
+const Option = (props) => {
+  return (
+    <div>
+      {props.option}
+    </div>
+  );
+};
 
-class Options extends React.Component {
-  render() {
-    return (
-      <div>
-        <button onClick={this.props.handleDeleteOpts}>Remove All</button>
-        <ol>
-        {
-          this.props.options.map(opt => <li key={opt}><Option option={opt} /></li>)
-        }
-        </ol>
-      </div>
-    );
-  }
-}
+const Options = (props) => {
+  return (
+    <div>
+      <button onClick={props.handleDeleteOpts}>Remove All</button>
+      <ol>
+      {
+        props.options.map(opt => <li key={opt}><Option option={opt} /></li>)
+      }
+      </ol>
+    </div>
+  );
+};
 
 class AddOption extends React.Component {
   constructor(props) {
