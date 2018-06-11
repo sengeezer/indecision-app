@@ -2,9 +2,13 @@ const Header = (props) => {
   return (
     <div>
       <h1>{props.title}</h1>
-      <h2>{props.subtitle}</h2>
+      {props.subtitle && <h2>{props.subtitle}</h2>}
     </div>
   );
+};
+
+Header.defaultProps = {
+  title: 'Indecision',
 };
 
 const Action = (props) => {
@@ -77,7 +81,7 @@ class IndecisionApp extends React.Component {
     super(props);
     this.state = {
       // opts: ['Hwonne', 'Tooo', 'Phree'],
-      opts: [],
+      opts: props.opts,
     };
 
     this.handleDeleteOpts = this.handleDeleteOpts.bind(this);
@@ -114,11 +118,10 @@ class IndecisionApp extends React.Component {
     });
   }
   render() {
-    const title = 'Indecision';
     const subtitle = 'A simple randomizer';
     return (
       <div>
-        <Header title={title} subtitle={subtitle} />
+        <Header subtitle={subtitle} />
         <Action hasOpts={this.state.opts.length > 0} handlePick={this.handlePick} />
         <Options options={this.state.opts} handleDeleteOpts={this.handleDeleteOpts} />
         <AddOption handleAddOpt={this.handleAddOpt} />
@@ -127,4 +130,9 @@ class IndecisionApp extends React.Component {
   }
 }
 
+IndecisionApp.defaultProps = {
+  opts: [],
+}
+
+// default options: <IndecisionApp opts={['Hwonne', 'Tooo', 'Phree']} />
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
