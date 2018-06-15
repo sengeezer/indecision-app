@@ -57,9 +57,7 @@ class AddOption extends React.Component {
 
     const error = this.props.handleAddOpt(option);
 
-    this.setState(() => {
-      return { error };
-    });
+    this.setState(() => ({ error }));
 
     ev.target.elements.option.value = '';
   }
@@ -80,7 +78,6 @@ class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // opts: ['Hwonne', 'Tooo', 'Phree'],
       opts: props.opts,
     };
 
@@ -97,11 +94,7 @@ class IndecisionApp extends React.Component {
     console.log(option);
   }
   handleDeleteOpts() {
-    this.setState(() => {
-      return {
-        opts: [],
-      };
-    });
+    this.setState(() => ({ opts: [] }));
   }
   handleAddOpt(option) {
     if (!option) {
@@ -110,12 +103,8 @@ class IndecisionApp extends React.Component {
       return 'Duplicates are not allowed';
     }
 
-    this.setState((prevState) => {
-      // replace opts with new arr (not modified existing)
-      return {
-        opts: prevState.opts.concat(option),
-      };
-    });
+    // replace opts with new arr (not modified existing)
+    this.setState((prevState) => ({ opts: prevState.opts.concat(option) }));
   }
   render() {
     const subtitle = 'A simple randomizer';
@@ -132,7 +121,7 @@ class IndecisionApp extends React.Component {
 
 IndecisionApp.defaultProps = {
   opts: [],
-}
+};
 
 // default options: <IndecisionApp opts={['Hwonne', 'Tooo', 'Phree']} />
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
