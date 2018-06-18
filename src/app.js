@@ -36,6 +36,7 @@ const Options = (props) => {
   return (
     <div>
       <button onClick={props.handleDeleteOpts}>Remove All</button>
+      {props.options.length === 0 && <p>Please add an option to get started.</p>}
       <ol>
       {
         props.options.map(opt => (
@@ -71,7 +72,10 @@ class AddOption extends React.Component {
 
     this.setState(() => ({ error }));
 
-    ev.target.elements.option.value = '';
+    // Don't reset input in case of invalid input data
+    if (!error) {
+      ev.target.elements.option.value = '';
+    }
   }
   render() {
     return (
@@ -97,6 +101,25 @@ class IndecisionApp extends React.Component {
     this.handleDeleteOpt = this.handleDeleteOpt.bind(this);
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOpt = this.handleAddOpt.bind(this);
+  }
+  componentDidMount() {
+    // account for invalid JSON
+    try {
+      const json = localStorage.getItem('options');
+      const opts = JSON.parse(json);
+
+      if (opts) {
+        this.setState(() => ({ opts }));
+      }
+    } catch (e) {
+      console.log('Possibly iunvalid JSON', e);
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.opts.length !== this.state.opts.length) {
+      const json = JSON.stringify(this.state.opts);
+      localStorage.setItem('options', json);
+    }
   }
   handlePick(ev) {
     ev.preventDefault();

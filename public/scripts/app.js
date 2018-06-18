@@ -67,6 +67,11 @@ var Options = function Options(props) {
       { onClick: props.handleDeleteOpts },
       'Remove All'
     ),
+    props.options.length === 0 && React.createElement(
+      'p',
+      null,
+      'Please add an option to get started.'
+    ),
     React.createElement(
       'ol',
       null,
@@ -113,7 +118,10 @@ var AddOption = function (_React$Component) {
         return { error: error };
       });
 
-      ev.target.elements.option.value = '';
+      // Don't reset input in case of invalid input data
+      if (!error) {
+        ev.target.elements.option.value = '';
+      }
     }
   }, {
     key: 'render',
@@ -163,6 +171,31 @@ var IndecisionApp = function (_React$Component2) {
   }
 
   _createClass(IndecisionApp, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // account for invalid JSON
+      try {
+        var json = localStorage.getItem('options');
+        var opts = JSON.parse(json);
+
+        if (opts) {
+          this.setState(function () {
+            return { opts: opts };
+          });
+        }
+      } catch (e) {
+        console.log('Possibly iunvalid JSON', e);
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.opts.length !== this.state.opts.length) {
+        var json = JSON.stringify(this.state.opts);
+        localStorage.setItem('options', json);
+      }
+    }
+  }, {
     key: 'handlePick',
     value: function handlePick(ev) {
       ev.preventDefault();
