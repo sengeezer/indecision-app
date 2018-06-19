@@ -6,4 +6,4 @@ Occasionally, my version will feature ECMA script features Mead did not use.
 
 ## Babel
 
-To use (without Webpack) use `babel src/app.js --out-file=public/scripts/app.js --presets=env,react [--watch]`
+To use (without Webpack) use `yarn build`
