@@ -91,10 +91,10 @@ class AddOption extends React.Component {
 }
 
 class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      opts: props.opts,
+      opts: [],
     };
 
     this.handleDeleteOpts = this.handleDeleteOpts.bind(this);
@@ -163,10 +163,6 @@ class IndecisionApp extends React.Component {
     );
   }
 }
-
-IndecisionApp.defaultProps = {
-  opts: [],
-};
 
 // default options: <IndecisionApp opts={['Hwonne', 'Tooo', 'Phree']} />
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
