@@ -1,96 +1,11 @@
-const Header = (props) => {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      {props.subtitle && <h2>{props.subtitle}</h2>}
-    </div>
-  );
-};
+import React, { Component } from 'react';
 
-Header.defaultProps = {
-  title: 'Indecision',
-};
+import AddOption from './AddOption';
+import Options from './Options';
+import Header from './Header';
+import Action from './Action';
 
-const Action = (props) => {
-  return (
-    <div>
-      <button onClick={props.handlePick} disabled={!props.hasOpts}>What should I do?</button>
-    </div>
-  );
-};
-
-const Option = (props) => {
-  return (
-    <div>
-      {props.option}
-      <button
-        onClick={(e) => {
-          props.handleDeleteOpt(props.option);
-        }}
-      >x</button>
-    </div>
-  );
-};
-
-const Options = (props) => {
-  return (
-    <div>
-      <button onClick={props.handleDeleteOpts}>Remove All</button>
-      {props.options.length === 0 && <p>Please add an option to get started.</p>}
-      <ol>
-      {
-        props.options.map(opt => (
-          <li key={opt}>
-            <Option
-              option={opt}
-              handleDeleteOpt={props.handleDeleteOpt}
-            />
-          </li>
-        ))
-      }
-      </ol>
-    </div>
-  );
-};
-
-class AddOption extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      error: undefined,
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleSubmit(ev) {
-    ev.preventDefault();
-
-    const option = ev.target.elements.option.value.trim();
-
-    const error = this.props.handleAddOpt(option);
-
-    this.setState(() => ({ error }));
-
-    // Don't reset input in case of invalid input data
-    if (!error) {
-      ev.target.elements.option.value = '';
-    }
-  }
-  render() {
-    return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.handleSubmit}>
-        <input type="text" name="option" />
-        <button type="submit">Add Option</button>
-      </form>
-      </div>
-    );
-  }
-}
-
-class IndecisionApp extends React.Component {
+class IndecisionApp extends Component {
   constructor() {
     super();
     this.state = {
@@ -164,4 +79,4 @@ class IndecisionApp extends React.Component {
   }
 }
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
+export default IndecisionApp;
