@@ -11,4 +11,14 @@ module.exports = {
       { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
     ],
   },
+  devtool: 'source-map',
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    // port: 7001,
+    // https: true,
+    // hot: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  },
 };

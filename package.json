@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "serve": "live-server public/",
-    "build": "webpack -p --watch",
-    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "build": "webpack -p",
+    "dev-server": "webpack-dev-server --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://git.matchesremote.com/fabioa/indecision-app"
+    "url": "git://git@bitbucket.org:fabioa-matches/indecision-app.git"
   },
   "keywords": [
     "react",
@@ -39,6 +39,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "validator": "^10.4.0",
-    "webpack": "^3.12.0"
+    "webpack": "^3.12.0",
+    "webpack-dev-server": "^2.11.2"
   }
 }
