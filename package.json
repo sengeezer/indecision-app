@@ -23,6 +23,7 @@
   "author": "Fabio Albertin",
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "6",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^3.19.0",

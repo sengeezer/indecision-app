@@ -6,17 +6,10 @@ import Header from './Header';
 import Action from './Action';
 
 class IndecisionApp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      opts: [],
-    };
+  state = {
+    opts: [],
+  };
 
-    this.handleDeleteOpts = this.handleDeleteOpts.bind(this);
-    this.handleDeleteOpt = this.handleDeleteOpt.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleAddOpt = this.handleAddOpt.bind(this);
-  }
   componentDidMount() {
     // account for invalid JSON
     try {
@@ -36,7 +29,7 @@ class IndecisionApp extends Component {
       localStorage.setItem('options', json);
     }
   }
-  handlePick(ev) {
+  handlePick = (ev) => {
     ev.preventDefault();
 
     const randNum = Math.floor(Math.random() * this.state.opts.length);
@@ -44,15 +37,15 @@ class IndecisionApp extends Component {
 
     console.log(option);
   }
-  handleDeleteOpts() {
+  handleDeleteOpts = () => {
     this.setState(() => ({ opts: [] }));
   }
-  handleDeleteOpt(opt) {
+  handleDeleteOpt = (opt) => {
     this.setState(prevState => ({
       opts: prevState.opts.filter(currOpt => opt !== currOpt),
     }));
   }
-  handleAddOpt(option) {
+  handleAddOpt = (option) => {
     if (!option) {
       return 'Please enter a valid option';
     } else if (this.state.opts.indexOf(option) > -1) {
@@ -60,7 +53,9 @@ class IndecisionApp extends Component {
     }
 
     // replace opts with new arr (not modified existing)
-    this.setState((prevState) => ({ opts: prevState.opts.concat(option) }));
+    this.setState(prevState => ({ opts: prevState.opts.concat(option) }));
+
+    return undefined;
   }
   render() {
     const subtitle = 'A simple randomizer';

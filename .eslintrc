@@ -1,3 +1,7 @@
 {
-  "extends": "eslint-config-mf"
+  "parser": "babel-eslint",
+  "extends": "eslint-config-mf",
+  "rules": {
+    "strict": 0
+  }
 }
