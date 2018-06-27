@@ -1,0 +1,15 @@
+$baseFont: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+// Make rem units base 10
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $baseFont;
+  font-size: 1.6rem;
+}
+
+h1 {
+  font-size: 2.2rem; // 22px
+}
