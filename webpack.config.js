@@ -8,15 +8,20 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.(js|jsx)$/, use: 'babel-loader', exclude: /node_modules/ },
+      {
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   devtool: 'source-map',
   devServer: {
     contentBase: path.join(__dirname, 'public'),
-    // port: 7001,
-    // https: true,
-    // hot: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
