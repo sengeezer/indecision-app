@@ -1,0 +1,50 @@
+button {
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  li & {
+    margin-left: 7px;
+  }
+
+  &.big,
+  &.small {
+    background-color: $purple;
+    border: none;
+    color: #fff;
+  }
+
+  &.big {
+    border-bottom: 0.6rem solid darken($color: $purple, $amount: 10%);
+    
+    font: {
+      weight: bold;
+      size: $large;
+    }
+    width: 100%;
+    margin-bottom: $xlarge;
+    padding: 2.4rem;
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
+  &.small {
+    border-bottom: 0.3rem solid darken($color: $purple, $amount: 10%); 
+    font-weight: 500;
+    padding: $small;
+
+    &--link {
+      background: none;
+      border: none;
+      color: $lighter-blue;
+      padding: 0;
+    }
+  }
+}

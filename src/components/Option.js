@@ -7,6 +7,7 @@ const Option = props => (
       onClick={(e) => {
         props.handleDeleteOpt(props.option);
       }}
+      className="small--link"
     >x</button>
   </div>
 );

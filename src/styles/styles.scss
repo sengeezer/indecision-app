@@ -3,17 +3,9 @@
 
 @import "components/container";
 @import "components/header";
-
-button {
-  padding: 0.3rem 0.6rem;
-  border-radius: 0.25rem;
-  font-size: 1.3rem;
-}
+@import "components/button";
+@import "components/widget";
 
 li {
   margin-bottom: 10px;
-}
-
-li button {
-  margin-left: 7px;
 }
