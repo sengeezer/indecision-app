@@ -14,7 +14,7 @@ const Options = props => (
       </button>
     </div>
     {props.options.length === 0 && <p className="widget__message">Please add an option to get started.</p>}
-    <ol>
+    <ol className="optionsList">
       {
         props.options.map(opt => (
           <li key={opt}>
