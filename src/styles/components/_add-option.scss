@@ -1,5 +1,6 @@
 .add-option {
   display: flex;
+  flex-direction: column;
   padding: $medium;
 
   &__error {
@@ -16,6 +17,16 @@
     border: none;
     border-bottom: 0.3rem solid darken($color: $dark-blue, $amount: 10%);
     padding: $small;
-    margin-right: $small;
+    margin: 0 0 $small 0;
+  }
+}
+
+@media (min-width: $desktop) {
+  .add-option {
+    flex-direction: row;
+
+    &__input {
+      margin: 0 $small 0 0;
+    }
   }
 }

@@ -1,7 +1,7 @@
 .header {
   background-color: $off-black;
   color: aliceblue;
-  margin-bottom: $xlarge;
+  margin-bottom: $medium;
   padding: $medium 1rem;
 
   &__title {
@@ -17,5 +17,11 @@
       weight: 500;
     }
     margin: 0;
+  }
+}
+
+@media (min-width: $desktop) {
+  .header {
+    margin-bottom: $xlarge;
   }
 }

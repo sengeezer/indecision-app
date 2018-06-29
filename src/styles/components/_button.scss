@@ -27,7 +27,7 @@ button {
       size: $large;
     }
     width: 100%;
-    margin-bottom: $xlarge;
+    margin-bottom: $medium;
     padding: 2.4rem;
 
     &:disabled {
@@ -46,5 +46,11 @@ button {
       color: $lighter-blue;
       padding: 0;
     }
+  }
+}
+
+@media (min-width: $desktop) {
+  button.big {
+    margin-bottom: $xlarge;
   }
 }
